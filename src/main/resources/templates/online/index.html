@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Shop</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Male_Fashion Template">
+        <meta name="keywords" content="Male_Fashion, unica, creative, html">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Control Shop</title>
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+              rel="stylesheet">
+        <link rel="shortcut icon" type="image/x-icon" href="/images/img/icon.png">
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="/cssx/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/elegant-icons.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/magnific-popup.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/nice-select.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/slicknav.min.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/style.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/scroll.min.css" type="text/css">
+        <link rel="stylesheet" href="/cssx/styleNhan.css" type="text/css">
+
+        <style>
+            header {
+                position: fixed;
+                width: 100%;
+                z-index: 100;
+            }
+        </style>
+    </head>
+
+<body>
+<!-- Page Preloder -->
+
+
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3  d-flex align-items-center" >
+                    <div class="header__top__left">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 d-flex align-items-center" >
+                    <form action="/buyer/search" method="post">
+                        <div style="width: 100%; display: flex; background-color: white; border: 10px;">
+                            <input th:value="${keyword}" name="keyWord" class="form-control" style="border: none; width: 500px;"  placeholder="Nhập văn bản..." type="text">
+                            <div style="width: 60px; background-color: #f3f2ee; height: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                <button type="submit" href=""><img src="/images/img/icon/search.png" alt=""></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-center">
+                    <div>
+
+                        <div th:if="${heartLogged}" class="header__top__links"  >
+                            <a th:href="@{'/buyer/purchase'}">Đơn mua</a>
+                        </div>
+
+                        <!--        Buyer FullName Begin    -->
+                        <div class="header__top__hover">
+                            <span th:text="${fullNameLogin}"><i class="arrow_carrot-down" ></i></span>
+                            <ul>
+                                <li><a th:href="@{'/buyer/setting'}" >Cài đặt</a></li>
+                                <li><a th:href="@{'/buyer/logout'}">Đăng xuất</a></li>
+
+                            </ul>
+                            <a th:if="${messageLoginOrSignin}" th:href="@{'/buyer/login'}" style="color: #ffffff;font-size: 13px;text-transform: uppercase;letter-spacing: 2px;display: inline-block;cursor: pointer;">Đăng nhập</a>
+                            <a><span> | | </span></a>
+                            <a th:if="${messageLoginOrSignin}" th:href="@{'/buyer/register'}" style="color: #ffffff;font-size: 13px;text-transform: uppercase;letter-spacing: 2px;display: inline-block;cursor: pointer;">Đăng ký </a>
+                        </div>
+                        <!--            Buyer FullName End -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container" style=" height: 100px">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a th:href="@{'/buyer/home'}" ><img src="/images/img/logo.png" style="width: 50px; height: 50px" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active">
+                            <a th:href="@{'/buyer/'}" >Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a th:href="@{'/buyer/shop'}" >Cửa Hàng</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option" style="display: flex;justify-content: end;">
+
+                    <a th:href="@{'/buyer/cart'}" style="position: relative; display: inline-block; ">
+                        <img src="/images/img/icon/cart.png" alt="">
+                        <span class="cart-count" style="position: absolute; height:20px; width: 25px; top: -13px; left: 3px;  color: rgb(0, 0, 0) ; font-size: 12px; font-weight: bold;  padding: 4px; border-radius: 50%;" th:text="${sumProductInCart}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->
+<section>
+    <div style="height: 150px; width: 100%;"></div>
+</section>
+
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        <div class="hero__items set-bg" data-setbg="/images/img/hero/hero-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h6>Summer Collection</h6>
+                            <h2>Fall - Winter Collections 2030</h2>
+                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
+                                commitment to exceptional quality.</p>
+                            <a th:href="@{'/buyer/shop'}" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero__items set-bg" data-setbg="/images/img/hero/hero-2.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 col-md-8">
+                        <div class="hero__text">
+                            <h6>Summer Collection</h6>
+                            <h2>Fall - Winter Collections 2030</h2>
+                            <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
+                                commitment to exceptional quality.</p>
+                            <a th:href="@{'/shop'}" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                            <div class="hero__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+<section style="width: 100%; height: 50px;"></section>
+
+<!-- Banner Section Begin -->
+<section class="banner spad">
+</section>
+<!-- Banner Section End -->
+
+<!-- Product Section Begin -->
+
+<section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter=".new-arrivals">Hàng mới về</li>
+                        <li  data-filter=".best-seller">Hàng bán chạy</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row product__filter">
+
+                <th:block th:each="product : ${listCTGModelNew}">
+                  <div class= "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" >
+                          <div class="product__item">
+                            <div class="product__item__pic set-bg" style="border-radius:20px;"  th:attr="data-setbg=@{'/images/imgsProducts/' + ${product.hinhAnh}}">
+                                <span class="label">New</span>
+                                  <ul class="product__hover">
+                                      <li >
+                                          <a th:href="@{'/buyer/shop-details/' + ${product.idGiay} +'/' + ${product.idMau}}">
+                                              <img src="/images/img/icon/view.png" alt="">
+                                              <span>Xem chi tiết</span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                            <div>
+                                <h6 style="margin-top:  10px; margin-bottom: 10px " th:text="${product.tenGiay}"></h6>
+                                <h5 th:if="${product.minPrice != product.minPriceTruocGiam}" style="font-weight: bold; margin-bottom: 10px; " th:text="'₫' + ${#numbers.formatDecimal(product.minPriceTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></h5>
+                                <h5 style="font-weight: bold; margin-bottom: 10px; " th:text="'₫' + ${#numbers.formatDecimal(product.minPrice, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></h5>
+                                <div class="product__color__select" style="display: flex">
+                                    <h6 style="font-size: 12px ;" th:text="${product.slTon}+ ' ' + 'có sẵn'"></h6>
+                                    <h6 style="font-style: italic; font-size: 12px ;margin-left: 100px;" th:text="${product.soLuongDaBan} + ' ' + 'đã bán'"></h6>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                </th:block>
+
+                <th:block th:each="product : ${listCTGModelBestSeller}">
+                    <div class= "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix best-seller" >
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" style="border-radius:20px;"  th:attr="data-setbg=@{'/images/imgsProducts/' + ${product.hinhAnh}}">
+                                <span class="label">Bán chạy</span>
+                                <ul class="product__hover">
+                                    <li>
+                                        <a th:href="@{'/buyer/shop-details/' + ${product.idGiay} +'/' + ${product.idMau}}">
+                                            <img src="/images/img/icon/view.png" alt="">
+                                            <span>Xem chi tiết</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+
+                                <h6 style="margin-top:  10px; margin-bottom: 10px " th:text="${product.tenGiay}"></h6>
+                                <h5 th:if="${product.minPrice != product.minPriceTruocGiam}" style="font-weight: bold; margin-bottom: 10px; " th:text="'₫' + ${#numbers.formatDecimal(product.minPriceTruocGiam, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></h5>
+                                <h5 style="font-weight: bold; margin-bottom: 10px; " th:text="'₫' + ${#numbers.formatDecimal(product.minPrice, 0, 'COMMA', 2, 'POINT').replaceAll('([,.])0+$', '$1').replaceAll('\\.$', '')}"></h5>
+                                <div class="product__color__select" style="display: flex">
+                                    <h6 style="font-style: italic; font-size: 12px ;margin-left: 100px;" th:text="${product.soLuongDaBan} + ' ' + 'đã bán'"></h6>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </th:block>
+
+
+            </div>
+        </div>
+    </section>
+
+<!-- Product Section End -->
+
+<!-- Categories Section Begin -->
+<section class="categories spad">
+</section>
+<!-- Categories Section End -->
+
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-12">-->
+<!--                <div class="section-title">-->
+<!--                    <span>Latest News</span>-->
+<!--                    <h2>Fashion New Trends</h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-4 col-md-6 col-sm-6">-->
+<!--                <div class="blog__item">-->
+<!--                    <div class="blog__item__pic set-bg" data-setbg="/images/imgNhan/blog1.jpg"></div>-->
+<!--                    <div class="blog__item__text">-->
+<!--                        <span><img src="/images/img/icon/calendar.png" alt=""> 16 February 2020</span>-->
+<!--                        <h5>What Curling Irons Are The Best Ones</h5>-->
+<!--                        <a href="https://www.instagram.com/nhanngu_03/">Read More</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4 col-md-6 col-sm-6">-->
+<!--                <div class="blog__item">-->
+<!--                    <div class="blog__item__pic set-bg" data-setbg="/images/imgNhan/blog2.jpeg"></div>-->
+<!--                    <div class="blog__item__text">-->
+<!--                        <span><img src="/images/img/icon/calendar.png" alt=""> 21 February 2020</span>-->
+<!--                        <h5>Eternity Bands Do Last Forever</h5>-->
+<!--                        <a href="https://www.facebook.com/Nhanday.19092003">Read More</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-lg-4 col-md-6 col-sm-6">-->
+<!--                <div class="blog__item">-->
+<!--                    <div class="blog__item__pic set-bg" data-setbg="/images/imgNhan/blog3.jpg"></div>-->
+<!--                    <div class="blog__item__text">-->
+<!--                        <span><img src="/images/img/icon/calendar.png" alt=""> 28 February 2020</span>-->
+<!--                        <h5>The Health Benefits Of Sunglasses</h5>-->
+<!--                        <a href="https://github.com/NhanPham2003">Read More</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</section>
+<!-- Latest Blog Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                        <a href="#"><img src="/Logo.png" alt=""></a>
+                    </div>
+                    <p> Khách hàng là trung tâm của mô hình kinh doanh độc đáo của chúng tôi, bao gồm cả thiết kế.</p>
+                    <a href="#"><img src="img/payment.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Cửa hàng</h6>
+                    <ul>
+                        <li><a href="/buyer/shop">Gian hàng</a></li>
+                        <li><a href="/buyer/shop">Xu Hướng</a></li>
+                        <li><a href="/buyer/shop">Đề Xuất</a></li>
+                        <li><a href="/buyer/shop/sale">Giảm giá</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Mua sắm</h6>
+                    <ul>
+                        <li><a href="#">Liên Hệ</a></li>
+                        <li><a href="#">Thanh Toán</a></li>
+                        <li><a href="#">Giao Hàng</a></li>
+                        <li><a href="#">Hoàn Hàng/Tiền</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Hãy là người đầu tiên biết về hàng mới, sách tra cứu, khuyến mại và khuyến mãi!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+<!-- Js Plugins -->
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/feather.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/jquery.nicescroll.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/jquery.countdown.min.js"></script>
+<script src="/js/jquery.slicknav.js"></script>
+<script src="/js/mixitup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="/js/scrollbar.min.js"></script>
+<script src="/js/custom-scroll.js"></script>
+
+
+</body>
+
+
+</html>
